@@ -30,8 +30,19 @@ export class NewsService {
   async saveNews(body){
     try{
       console.log('body in newsService', body)
-      const data = await  this.savedNewsModel.create({...body})
-      console.log('data', data)
+      const resp = await this.savedNewsModel.find({userEmail:body.userEmail,title:body.title})
+      console.log('resp', resp)
+      console.log('resp', resp.length)
+      let data;
+      if(resp.length>0){
+         data = await this.savedNewsModel.deleteOne({userEmail:body.userEmail,title:body.title})
+        console.log('data for deleting', data)
+      }
+      else{
+       data = await  this.savedNewsModel.create({...body})
+      console.log('data for creating', data)
+      }
+      console.log('data final', data)
       return {success:true}
     }catch(error){
       console.log('error in newsService', error.message)
@@ -228,8 +239,18 @@ export class NewsService {
     console.log('body', body)
     try{
       const res = await this.savedNewsModel.find({userEmail:body})
-      console.log('res', res)
+      // console.log('res', res)
       return res
+    }
+    catch(error){
+      throw new BadRequestException(error.message)
+    }
+  }
+
+  async  DeleteSaved(email){
+    try{
+      const data = await this.savedNewsModel.deleteMany({userEmail:email})
+      console.log('data', data)
     }
     catch(error){
       throw new BadRequestException(error.message)

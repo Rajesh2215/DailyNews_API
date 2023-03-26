@@ -75,6 +75,26 @@ export class NewsController {
         try {
             console.log('body', email)
             const res = await this.newsService.FetchSaved(email)
+            // console.log('res', res)
+            return res
+        }
+        catch (error) {
+            throw new HttpException("message", 400, { cause: new Error(error.message) })
+        }
+    }
+
+    @ApiCreatedResponse({ description: "Deleting Saved News Articles" })
+    // @ApiBody({ type: savedNewsDTO })
+    @Post('/DeleteSavedNews/:email?')
+    async DeleteSavedNews(@Param('email') email: string) {
+        console.log('API_CALL=>', {
+            'request user id': '',
+            'request body': email,
+            api: `DeleteSavedNews`,
+        });
+        try {
+            console.log('body', email)
+            const res = await this.newsService.DeleteSaved(email)
             console.log('res', res)
             return res
         }
