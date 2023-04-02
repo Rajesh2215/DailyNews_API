@@ -256,4 +256,17 @@ export class NewsService {
       throw new BadRequestException(error.message)
     }
   }
+  
+  async Category(category) {
+    try {
+      console.log('fetching nes', category)
+      // const api=`https://newsapi.org/v2/top-headlines?country=${countryCode}&apiKey=${process.env.APIKEY}`
+      const api=`https://newsapi.org/v2//top-headlines?category=${category}&country=in&apikey=${process.env.APIKEY}`
+      const fetch = await axios.get(api)
+      // console.log('fetch', fetch.data)
+      return fetch.data
+    }catch(error){
+      console.log('error',error)
+    }
+    }
 }

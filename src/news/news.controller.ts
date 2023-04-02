@@ -103,4 +103,19 @@ export class NewsController {
         }
     }
 
+    @ApiCreatedResponse({ description: "Latest News" })
+    @ApiBody({ type: NewsDto })
+    @Post('/categoryNews')
+    async Category(@Body() body: NewsDto) {
+        console.log('API_CALL=>', {
+            'request user id': '',
+            'request body': body,
+            api: `categoryNews`,
+        });
+        let category = Object.keys(body)[0]
+        console.log('body', category)
+        let resp = await this.newsService.Category(category)
+        return resp.articles
+    }
+
 }
