@@ -1,13 +1,13 @@
-<!-- To Run the project  -->
+To Run the project 
 
 
 npm i
 
-<!-- Create a .env -->
+Create a .env
 Get your API key from  Google News : https://newsapi.org/s/google-news-in-api
 and paste in env
 
-<!-- Required an email account for SMTP (for OTP) -->
+Required an email account for SMTP (for OTP)
 If two step verifcation enabled for gmail account , then you have to create password for it
 Go to your Google Account Security page.
 Under the "Signing in to Google" section, click on "App passwords".
