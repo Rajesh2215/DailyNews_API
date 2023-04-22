@@ -48,7 +48,7 @@ export class UserService {
     async login(payload) {
         try {
             let user = await this.userModel.findOne({ email: payload.email })
-            // console.log('user', user)
+            console.log('user', user)
             if (!user) {
                 throw new NotFoundException('Invalid Username or Password')
             }
@@ -65,7 +65,7 @@ export class UserService {
                 message: 'User Logged in Successfully',
                 success: true,
                 status: HttpStatus.OK,
-                data:user.email
+                data:user,
             };
         }
         catch (error) {
