@@ -1,7 +1,9 @@
+
+I have followed microservice architecture.
 To Run the project 
 
-
-npm i
+First clone my other repo : DailyNews (FrontEnd)
+Then,npm i
 
 Create a .env
 Get your API key from  Google News : https://newsapi.org/s/google-news-in-api
